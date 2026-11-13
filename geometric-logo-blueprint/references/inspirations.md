@@ -1,4 +1,4 @@
-# Inspirations: notes on constructed logos
+# Inspirations and references
 
 
 Reading notes that shaped this skill. Primary inspiration: James Barnard, "A Blueprint for a Logo". Paraphrased; brand names are used for commentary only.
@@ -38,3 +38,51 @@ A logo blueprint = a schematic (brand-guideline style) from which, with simple i
 - The Logo Smith, grids & pretty circles (2011)
 - 99designs, do's and don'ts of logo grids
 - The Logo Smith, Apple identity guidelines notebook (2018)
+
+---
+
+# Version 2 references
+
+Three open projects shaped version 2. The notes below are paraphrased. Nothing is copied from them, and no logos from them are included here.
+
+## logo-design skill, by Kaan Kızıltuğ (MIT)
+https://github.com/kaankiziltug/logo-design-skill
+- A logo identifies; it doesn't explain. One idea that you can say in one sentence.
+- Explore across mark types. Write many one-line concepts, build only the strongest three, and pause at a checkpoint before building the full kit.
+- List the category's clichés before drawing, and give any cliché you use a fresh form.
+- Craft pass:
+  - the letter test (does each letter still read as itself?);
+  - junction checks;
+  - a peer test against well-made marks;
+  - a literalness check.
+- Optical corrections with ranges:
+  - overshoot of 1 to 3% for curves and more for points;
+  - the bone effect on capsules;
+  - irradiation (thin the reversed file 2 to 5%);
+  - thinner horizontals;
+  - the optical centre.
+- Testing battery:
+  - size ladder and 16px pixel test;
+  - backgrounds, one-colour and greyscale;
+  - squint, mirror and 180° rotation, which catch unintended readings;
+  - realistic contexts;
+  - a shelf test against competitors;
+  - the familiarity test.
+- Production: no live text, rasters or filters in masters; few anchors; arcs for circular geometry; expand strokes before delivery.
+- Honesty: you can't give trademark clearance, so recommend a search, and don't claim tests you didn't run.
+
+## Simple Icons
+https://github.com/simple-icons/simple-icons (CONTRIBUTING.md)
+- The icon convention: 24×24 viewBox, one monochrome path, no extra elements or attributes.
+- The icon touches at least two sides of the box and is centred.
+- Optimise to about 3-decimal precision, then check that nothing changed.
+- Where colour separation is lost in mono, add gaps of about 0.5 on the 24 grid.
+- Record the brand colour as a 6-digit hex, and prefer official sources.
+
+## Inkloom
+https://github.com/Inkloom-art/inkloom (source published for reading; all rights reserved)
+- Turn the brand description into concrete constraints before drawing: stroke weight, width, geometry, counter shape, and which symbol families fit.
+- Compose primitives under construction rules: shared radii, tangent junctions, consistent terminals.
+- Use optical alignment rather than mathematical centring. Take clear-space ratios from the mark itself, and deliver the lockups a brand needs (horizontal, stacked, symbol alone).
+- The output should be a specification you can describe and reproduce, not a bitmap.
+- Don't claim a capability before it exists.
