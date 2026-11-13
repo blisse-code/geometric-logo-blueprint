@@ -1,5 +1,14 @@
 # Changelog
 
+## v2.1.0 (2026-11-13)
+
+- Frame: for a ring-based mark, centre the ring on the crop; centre on the area centroid only when nothing echoes the crop.
+- Tournament: place every round in the shared design file with scores before asking for a choice; shortlist by eye, revise each pick with its blueprint.
+- Tests: context composites (real Dock, tab bar); a small-size cut for 16px; honest rasterising by pixel-centre sampling.
+- Construction: pixel-grid option (cell = canvas/16); snap stems to a 16-unit grid; equal-sector gap rule for broken rings.
+- Colour: one accent for one meaning, at least 3:1 for graphics.
+- blueprint_kit.py: raster() samples pixel centres (the old fill added a false grey edge). The demo output changed accordingly.
+
 ## v2.0.0 (2026-11-13)
 
 - Brief to constraints: turn adjectives into stroke, proportion, geometry, counter and terminal parameters; list category clichés.

@@ -46,6 +46,7 @@ If a previous version exists, inspect the real file data (sizes, stroke widths, 
 **2. Fix the frame and its crops.**
 - Canvas size (512) and every crop the mark must survive: circle avatar (r = S/2), rounded app icon, square favicon.
 - **Safe circle** at 7/8 of the crop radius (224 on 512). All ink stays inside it.
+- **What sits on the crop centre.** If the mark is built on a circle, put that circle's centre on the crop centre. Two near-concentric circles that miss by a few pixels read as a mistake, and the eye forgives uneven weight sooner. Centre on the area centroid only when nothing in the mark echoes the crop.
 - If a brief mentions the mark being cut by a crop, decide out loud: *crop-safe* (the default) or *deliberate bleed* (one element runs off the edge at a documented point).
 
 **3. Pick a module and one primitive.**
@@ -56,11 +57,11 @@ If a previous version exists, inspect the real file data (sizes, stroke widths, 
 **4. Place every element by a rule.** Each one gets a one-line instruction, for example: "the stem stands on the circle's west point and rises until its cap touches the safe circle."
 - One stroke weight, **measured square to the stroke**. A 45° arm cut 48 wide horizontally is only 34 thick.
 - One cap and join style for every element. Sharp corners beside round caps read as two systems.
-- One gap rule, for example "every gap equals one stroke".
+- One gap rule, for example "every gap equals one stroke", or for a broken ring "divide it into equal sectors and ink alternate ones".
 - Dot diameter equals the stroke.
 
 **5. Optics, as numbers.**
-- **Mass:** put the area centroid on the optical centre (about 1% above the geometric centre), not the bounding box.
+- **Mass:** for marks with no circle echoing the crop, put the area centroid on the optical centre (about 1% above the geometric centre), not the bounding box. For ring-based marks see step 2: the ring wins, and open space on the light side balances the weight.
 - **Overshoot:** round forms 1 to 3% of height; points 3 to 6%. A round dot beside straight strokes needs about +4% diameter.
 - **Irradiation:** light-on-dark reads heavier. Thin the reversed file 2 to 5% and name it as its own file.
 - **Lettering:** horizontals 5 to 10% thinner than verticals.
@@ -79,6 +80,8 @@ Write each correction into the rule list.
 - Shortlist **three finalists from different directions**, not the top three of one family.
 - Reiterate each finalist to fix what its tests exposed, then reiterate the winner once more into the final.
 - Keep every round's files. A reiteration can make a mark worse. Say so and keep the earlier version.
+- **Show every round where the decision-maker works** (a Figma page, a shared board), one labelled frame per version with its score, before asking anyone to choose. Scores computed out of sight feel unverifiable.
+- Let the person pick a shortlist by eye, then revise each pick with its blueprint. Scores inform the choice. They don't make it.
 
 **8. Test battery.** Use real renders, never a downscaled screenshot.
 - **Size:** 16, 20, 24, 32, 48, 64, 128, 256px.
@@ -89,8 +92,11 @@ Write each correction into the rule list.
 - **Colour:** one-colour black and white, reversed, brand colour, a photo, a pattern.
 - **Shelf and familiarity:** put the mark beside 4 to 6 marks from its category that use the same device. If it feels familiar and isn't yours, it's someone else's.
 - **Junctions:** zoom into every place strokes meet. Look for notches, slivers and lumps.
+- **Context composites:** put the mark in the real places it will live, using a screenshot of the person's own Dock, home screen or tab bar at native resolution, and compare it with its neighbours.
+- **Measure honestly:** sample pixel centres when rasterising. Polygon fills that include edge pixels add a false grey border and inflate blur numbers.
 
 **9. Colourways.** A reversal swaps background and foreground and keeps the geometry, apart from the thinned reversed file. Check contrast (aim for 4.5:1 or more). One flat colour per version, no gradients in the master.
+- **One accent, one meaning.** If a second colour is used, give it to the single element that carries a meaning (for example, the cursor or prompt that says "code"). A graphic accent needs at least 3:1 against its background, so use it only on grounds where it reaches that.
 
 **10. Production files.**
 - Outlines, not strokes. One `<path>`, a `<title>`, coordinates to 2 decimals.
@@ -103,6 +109,8 @@ Write each correction into the rule list.
   - no fill, width or height attributes;
   - the brand colour recorded as a 6-digit hex.
   - Where a mono version needs separated segments, use gaps of about 0.5 on 24 (1/48).
+- **Small-size cut:** if the master's details merge at 16px, draw a separate 16px version. Drop the smallest element and thicken the stroke, then use it only at that size. Don't weaken the master to fit.
+- **Pixel-grid construction** for marks that must be razor-sharp: use cells of canvas/16 (32 on 512), so one cell is exactly 1px at 16px and 2px at 32px. Place on whole cells only. Snap the vertical stems of curved marks to a 16-unit grid so they stay crisp at 32 and 64px.
 - **Favicon crop:** square favicons don't need the safe circle. Re-crop the viewBox to the ink bounds plus a 6% margin so the mark draws larger.
 - **Clear space** comes from the mark's own geometry (for example, one stroke or one dot diameter), not a fixed number.
 
@@ -186,6 +194,8 @@ Build each frame as SVG with partial geometry: arcs grow by angle and lines by l
 - Elements touching the crop edge by accident.
 - Undocumented optical tweaks.
 - Hundreds of anchors in a mark made of circles and lines.
+- A ring that almost, but not quite, shares the crop's centre.
+- Scoring versions the decision-maker can't see.
 - Shortlisting three versions of the same idea.
 - Overwriting iterations, or editing the original master in place.
 - Judging scalability at 512px.

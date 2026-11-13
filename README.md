@@ -13,6 +13,16 @@ Inspired by logo designers who build marks from simple geometry, including James
 
 ---
 
+## New in v2.1
+
+- **Centre the ring, not the weight**, when a mark is built on a circle. Two near-concentric circles that miss by a few pixels read as a mistake.
+- **Show every round where the decision-maker works.** Use one labelled frame per version, let them shortlist by eye, then revise each pick with its blueprint.
+- **Context composites:** test the mark in a screenshot of the real Dock or tab bar it will live in.
+- **A small-size cut** for 16px, when details merge there. Don't weaken the master.
+- **Pixel-grid construction:** cells of canvas/16, so 1 cell = 1px at 16px.
+- **One accent, one meaning**, at 3:1 or more for graphics.
+- **Honest measurement:** the kit now samples pixel centres. Edge-inclusive polygon fills had added a false grey border.
+
 ## New in v2
 
 - **Brief to constraints.** Adjectives, audience and competitors become concrete parameters before any drawing: stroke weight, proportion, geometry family, counter shape and terminal style. The category's clichés get listed, so you can avoid them.
@@ -22,9 +32,9 @@ Inspired by logo designers who build marks from simple geometry, including James
 - **Production files.** Outlined arcs instead of hundreds of polyline points, one path, and a `<title>`. A 24×24 single-path monochrome icon in the Simple Icons format. A tight favicon crop. Clear space taken from the mark's own geometry.
 - **`scripts/blueprint_kit.py`.** Build primitives, centre the mass, fit the safe circle, write SVGs and measure.
 
-![Measured at 16px: three variants keep their shapes, one gap closes](examples/v2/measure-demo.png)
+![Measured at 16px: three variants keep their shapes, the thinnest loses its centre dot](examples/v2/measure-demo.png)
 
-*The kit's demo, a generic mark made for this README. Narrowing the ring's gap from 45° to 28° looks fine at 512. The measurement shows it closing into a ring at 16px, which adds a hole.*
+*The kit's demo, on a generic mark made for this README. Thinning the stroke to 32 looks fine at 512, but the measurement shows the centre dot dropping out at 16px. The 28° gap, narrower than the others, still holds.*
 
 ## What it does
 

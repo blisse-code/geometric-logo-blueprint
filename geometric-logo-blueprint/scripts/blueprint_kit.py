@@ -130,20 +130,17 @@ def simple_icon(g, title):
 # ---------- raster ----------
 
 def raster(g, size, vb=(0, 0, 512, 512), ss=8):
-    """Area-coverage render (supersample then box-filter), ink=1.0."""
+    """Area-coverage render: sample ss*ss pixel-centre points per pixel (exact point-in-polygon), ink=1.0.
+
+    Sampling pixel centres avoids the false grey border that edge-inclusive polygon fills add.
+    """
+    import shapely
     S = size * ss
-    im = Image.new("L", (S, S), 0)
-    dr = ImageDraw.Draw(im)
-    k = S / vb[2]
-
-    def tr(coords):
-        return [((x - vb[0]) * k, (y - vb[1]) * k) for x, y in coords]
-
-    for p in polys(g):
-        dr.polygon(tr(p.exterior.coords), fill=255)
-        for i in p.interiors:
-            dr.polygon(tr(i.coords), fill=0)
-    return np.asarray(im.resize((size, size), Image.BOX), dtype=np.float32) / 255.0
+    k = vb[2] / S
+    c = (np.arange(S) + 0.5) * k
+    X, Y = np.meshgrid(c + vb[0], c + vb[1])
+    inside = shapely.contains_xy(g, X.ravel(), Y.ravel()).reshape(S, S).astype(np.float32)
+    return inside.reshape(size, ss, size, ss).mean(axis=(1, 3))
 
 
 def _label(mask):
